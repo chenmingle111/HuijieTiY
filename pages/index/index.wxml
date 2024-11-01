@@ -1,0 +1,13 @@
+<view class="container">
+  <!-- 使用 <image> 标签显示背景图片 -->
+  <!--<image class="background-image" src="/images/back.jpg" mode="aspectFill" />
+
+  <!-- 显示Logo -->
+  <image class="logo" src="/images/OIP.jpg" mode="widthFix" />
+
+  <!-- 按钮容器 -->
+  <view class="button-container">
+    <button class="action-button" bindtap="updateData">上传报告</button>
+    <button class="action-button" bindtap="viewHistory">我的日志</button>
+  </view>
+</view>

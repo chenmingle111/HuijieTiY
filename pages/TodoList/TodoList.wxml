@@ -1,0 +1,25 @@
+<!-- index.wxml -->
+<view class="container"> 
+  <view class="add-list">
+    <input  
+      type="text" 
+      auto-focus 
+      placeholder="要加什么任务吗？" 
+      value="{{todolist_one}}"   
+      bindinput="bindKeyInput" 
+    />
+    <button class="btn" bindtap="add">添加</button>
+  </view>
+  
+  <view class="add-list-container">
+  <checkbox-group bindchange="mark">
+    <view class="add-list" wx:for="{{todo}}" wx:key="{{item.value}}">
+      <checkbox value="{{index}}" checked="{{item.checked}}"></checkbox>
+      <view class="{{item.checked ? 'checked' : ''}} item-text">
+         {{ item.value }}
+      </view>
+      <button class="btn" bindtap="delete" data-index="{{index}}">删除</button>
+    </view>
+  </checkbox-group>
+  </view>
+</view>

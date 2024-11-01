@@ -1,0 +1,43 @@
+<view class="container">
+  <view>
+<button bindtap="showDatePicker">{{selectedDate}}</button> <!-- 显示选择的日期 -->
+  <calenda id="calenda" bind:doSelect="onDateSelected"></calenda>
+</view>
+
+
+
+  <!-- 性别选择 -->
+  <view class="input-section">
+    <radio-group class="gender-group" bindchange="onGenderChange">
+      <radio value="男" class="radio" checked="{{gender === '男'}}">男</radio> <!-- 默认选中男 -->
+      <radio value="女" class="radio" checked="{{gender === '女'}}">女</radio> <!-- 默认选中女 -->
+    </radio-group>
+  </view>
+
+  <!-- 年龄输入 -->
+  <view class="input-section">
+    <input type="number" placeholder="请输入年龄" bindinput="onInput" data-key="age" value="{{age}}" class="input" />
+  </view>
+
+  <!-- 使用双重循环来生成输入框 -->
+  <block wx:for="{{groups}}" wx:key="index">
+    <section class="input-group">
+      <text class="group-label">{{item.label}}：</text>
+      <block wx:for="{{item.items}}" wx:key="index">
+        <input type="number" placeholder="{{item.placeholder}}" bindinput="onInput" data-key="{{item.key}}" class="input" />
+      </block>
+    </section>
+  </block>
+
+  <!-- 保存和查看图表按钮 -->
+  <view class="button-section">
+    <button class="save-button" bindtap="saveData">上传并分析</button>
+    <button class="chart-button" bindtap="goToChart">历史数据</button>
+  </view>
+
+  <!-- 显示记录次数 -->
+  <view>
+    <text>{{displayText}}</text>
+  </view>
+  
+</view>

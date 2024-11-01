@@ -1,0 +1,61 @@
+.container {
+  padding: 20rpx;
+  font-weight: bold; /* 字体加粗 */
+}
+
+.label {
+  font-size: 32rpx;
+  font-weight: bold;
+  margin-right: 10rpx;
+}
+
+.input-section {
+  margin-bottom: 20rpx;
+}
+
+.input-group {
+  margin-bottom: 30rpx;
+}
+
+.group-label {
+  font-size: 34rpx;
+  font-weight: bold;
+  margin-bottom: 10rpx;
+  display: block;
+  color: #007acc;
+}
+
+.input {
+  width: 100%;
+  padding: 10rpx;
+  font-size: 28rpx;
+  border: 1px solid #ccc;
+  border-radius: 10rpx;
+  margin-bottom: 15rpx;
+}
+
+.gender-group {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20rpx;
+}
+
+.radio {
+  margin-right: 30rpx;
+  font-size: 30rpx;
+}
+
+.button-section {
+  margin-top: 30rpx;
+}
+
+.save-button, .chart-button {
+  background-color: #007acc;
+  color: white;
+  padding: 12rpx 0;
+  font-size: 32rpx;
+  border-radius: 10rpx;
+  margin-bottom: 20rpx;
+  width: 100%;
+  text-align: center;
+}

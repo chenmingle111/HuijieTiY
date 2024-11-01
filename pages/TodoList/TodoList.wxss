@@ -1,0 +1,39 @@
+.container {
+  margin: 30rpx 0 0 30rpx; /* 上边距和左边距 */
+  border-radius: 5px;
+  background-color: white;
+  width: calc(100% - 30rpx); /* 减去左边距 */
+  padding-bottom: 1rpx;
+}
+
+.add-list {
+  width: 100%;
+  display: flex; /* 使用 Flexbox 进行布局 */
+  justify-content: space-between; /* 在项目之间留出均匀的间距 */
+  align-items: center;
+  outline-color: rgb(230, 230, 230);
+}
+
+.btn {
+  background-color: gold;
+  width: 30%; /* 减小宽度，根据需要调整 */
+  padding: 5px 10px; /* 为按钮设置内边距，可以根据需要进行调整 */
+  margin-left: auto; /* 自动边距将按钮推至右侧 */
+  border: none; /* 去除默认边框 */
+  border-radius: 5px; /* 添加圆角效果，如果需要的话 */
+  cursor: pointer; /* 鼠标悬停时显示指针 */
+}
+.checked {
+  text-decoration: line-through;
+  color: blue;
+}
+.add-list-container{
+  margin:auto;
+  width: 100%;
+}
+.item-text {
+  width: 100px; /* 根据需要设置固定宽度 */
+  white-space: nowrap; /* 防止换行 */
+  overflow: hidden; /* 隐藏超出元素的内容 */
+  text-overflow: ellipsis; /* 添加省略号 */
+}

@@ -1,0 +1,56 @@
+
+<view class="button-container">
+  <view class="level-1">
+    <button class="spec1 {{currentGroup === 1 ? 'active' : ''}}" bindtap="change1">红细胞指标</button>
+    <button class="spec1 {{currentGroup === 2 ? 'active' : ''}}" bindtap="change2">白细胞指标</button>
+    <button class="spec1 {{currentGroup === 3 ? 'active' : ''}}" bindtap="change3">血小板指标</button>
+    <button class="spec1 {{currentGroup === 4 ? 'active' : ''}}" bindtap="change4"><text>血红蛋白\n指标</text></button>  
+  </view>
+  <view class="level-2">
+  <view wx:if="{{currentGroup === 1}}" class="secondButton">
+    <button class="spec2 {{currentButton === 'j' ? 'active' : ''}}" data-key="j" bindtap="switchData">红细胞个数</button>
+    <button class="spec2 {{currentButton === 'l' ? 'active' : ''}}" data-key="l" bindtap="switchData">红细胞压积</button>
+    <button class="spec2 {{currentButton === 'm' ? 'active' : ''}}" data-key="m" bindtap="switchData"><text>平均红细胞\n体积</text></button>
+    <button class="spec2 {{currentButton === 'n' ? 'active' : ''}}" data-key="n" bindtap="switchData"><text>平均红细胞\n血红蛋白</text></button>
+    <button class="spec2 {{currentButton === 'o' ? 'active' : ''}}" data-key="o" bindtap="switchData"><text>平均红细胞血红蛋白浓度</text></button>
+    <button class="spec2 {{currentButton === 'p' ? 'active' : ''}}" data-key="p" bindtap="switchData">红细胞分布宽度SD</button>
+    <button class="spec2 {{currentButton === 'q' ? 'active' : ''}}" data-key="q" bindtap="switchData">红细胞分布宽度CV</button>
+  </view>
+
+  <view wx:if="{{currentGroup === 2}}" class="secondButton">
+    <button class="spec2 {{currentButton === 'a' ? 'active' : ''}}" data-key="a" bindtap="switchData">白细胞计数</button>
+    <button class="spec2 {{currentButton === 'b' ? 'active' : ''}}" data-key="b" bindtap="switchData">中性粒细胞</button>
+    <button class="spec2 {{currentButton === 'c' ? 'active' : ''}}" data-key="c" bindtap="switchData">淋巴细胞</button>
+    <button class="spec2 {{currentButton === 'd' ? 'active' : ''}}" data-key="d" bindtap="switchData">单核细胞</button>
+    <button class="spec2 {{currentButton === 'e' ? 'active' : ''}}" data-key="e" bindtap="switchData">嗜酸性粒细胞</button>
+    <button class="spec2 {{currentButton === 'f' ? 'active' : ''}}" data-key="f" bindtap="switchData">嗜碱性粒细胞</button>
+    <button class="spec2 {{currentButton === 'g' ? 'active' : ''}}" data-key="g" bindtap="switchData">中性粒细胞</button>
+    <button class="spec2 {{currentButton === 'h' ? 'active' : ''}}" data-key="h" bindtap="switchData">淋巴细胞%</button>
+    <button class="spec2 {{currentButton === 'i' ? 'active' : ''}}" data-key="i" bindtap="switchData">单核细胞%</button>
+  </view>
+
+  <view wx:if="{{currentGroup === 3}}" class="secondButton">
+    <button class="spec2 {{currentButton === 'r' ? 'active' : ''}}" data-key="r" bindtap="switchData">血小板计数</button>
+    <button class="spec2 {{currentButton === 's' ? 'active' : ''}}" data-key="s" bindtap="switchData"><text>血小板分布\n宽度</text></button>
+    <button class="spec2 {{currentButton === 't' ? 'active' : ''}}" data-key="t" bindtap="switchData"><text>平均血小板\n体积</text></button>
+    <button class="spec2 {{currentButton === 'u' ? 'active' : ''}}" data-key="u" bindtap="switchData">血小板压积</button>
+    <button class="spec2 {{currentButton === 'v' ? 'active' : ''}}" data-key="v" bindtap="switchData">大型血小板比率</button>
+  </view>
+
+  <view wx:if="{{currentGroup === 4}}" class="secondButton">
+    <button class="spec2 {{currentButton === 'k' ? 'active' : ''}}" data-key="k" bindtap="switchData">血红蛋白</button>
+  </view>
+</view>
+</view>
+<view catchtouchstart="handleTouchStart" catchtouchmove="handleTouchMove" catchtouchend="handleTouchEnd">
+<view class="chart-container">
+  <ec-canvas id="mychart-dom" canvas-id="mychart-dom" ec="{{ ec }}" />
+</view>
+
+<view class="text-container">
+  <text>{{ displayText }}</text>
+</view>
+<view class="arrow-container">
+    <image class="arrow-icon" src="/images/download(1).jpg" mode="aspectFit"></image>
+  </view>
+</view>

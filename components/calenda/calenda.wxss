@@ -1,0 +1,119 @@
+.spaceAroundCenter {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.box {
+  margin: 30rpx;
+}
+ 
+.flex-item {
+  /* flex-flow: nowrap;
+  flex-grow: 1;
+  flex-shrink: 1; */
+  width: 14.2%;
+}
+ 
+.item-content {
+  padding: 25rpx 0;
+  text-align: center;
+}
+ /* 当前日期 */
+.bk-color-day {
+  color: #fff;
+  border-radius: 50%;
+  background-color: #096b09;
+}
+
+/* 当前选中日期 */
+.bk-color-dayClick {
+  color: #fff; /* 字体颜色 */
+  border-radius: 50%; /* 圆形 */
+  background-color: #50f328; /* 背景颜色与当前日期相同 */
+  transform: scale(1.05); /* 轻微放大效果 */
+  transition: background-color 0.3s, transform 0.3s; /* 添加过渡效果 */
+}
+
+/* 恢复到普通状态时的样式 */
+.item-content {
+  transition: background-color 0.3s; /* 过渡效果 */
+}
+
+ 
+.item-content-current-day {
+  flex-grow: 2;
+}
+
+.my-dialog {
+  opacity: 1;
+}
+.my-dialog .my-mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+.my-dialog .my-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  text-align: center;
+  border-radius: 3px;
+  overflow: hidden;
+  z-index: 5000;
+}
+.my-dialog .my-container .title {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 20rpx 0 0 0;
+
+  text-align: center;
+  font-weight: 400;
+  font-size: 18px;
+  color: #303133;
+}
+.my-dialog .my-container .content {
+  margin: 10rpx 0 20rpx;
+  display: flex;
+  width: 100%;
+  line-height: 50rpx;
+  text-align: left;
+}
+.my-dialog .my-container .content .row {
+  margin: 0 10%;
+  width: 80%;
+  font-size: 26rpx;
+  color: #606266;
+  word-break: break-all;
+}
+.my-dialog .my-container .btn-row {
+  padding: 10rpx 0 0;
+  display: flex;
+  width: 100%;
+  height: 68rpx;
+  line-height: 68rpx;
+  font-size: 18px;
+  border-top: 1rpx solid #c0c4cc;
+}
+.my-dialog .my-container .btn-row .confirm {
+  float: right;
+  width: 50%;
+  height: 100%;
+  color: #86c2ec;
+}
+.my-dialog .my-container .btn-row .cancel {
+  color: #606266;
+  float: right;
+  width: calc(50% - 2rpx);
+  height: 100%;
+  border-right: 1rpx solid #c0c4cc;
+}

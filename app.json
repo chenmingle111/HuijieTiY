@@ -1,0 +1,19 @@
+{
+  "pages": [
+    "pages/chart-radar/chart-radar",
+    "pages/index/index",
+  
+    "pages/data-collection/data-collection",
+    "pages/chart-red/chart-red"
+
+  ],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "Weixin",
+    "navigationBarBackgroundColor": "#ffffff"
+  },
+  "style": "v2",
+  "componentFramework": "glass-easel",
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents"
+}
