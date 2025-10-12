@@ -1,9 +1,15 @@
-<!--index.wxml-->
-<view class="container"  catchtouchstart="handleTouchStart" catchtouchmove="handleTouchMove" catchtouchend="handleTouchEnd">
+<view class="container">
+  <!-- 图表 Canvas 容器 -->
+  <view class="ec-container">
+    <ec-canvas id="mychart-radar" canvas-id="mychart-radar" ec="{{ec}}"></ec-canvas>
+  </view>
   
-    <ec-canvas id="mychart-dom-graph" canvas-id="mychart-graph" ec="{{ ec }}"></ec-canvas>
-  <view class="arrow-container">
-    <image class="arrow-icon" src="/images/download.jpg" mode="aspectFit"></image>
+  <!-- 用于显示健康状态的区域 -->
+  <view class="health-status" wx:if="{{healthStatus}}">
+    {{healthStatus}}
   </view>
 
+  <view>
+    <button bindtap="changered">各项分析</button>
+  </view>
 </view>

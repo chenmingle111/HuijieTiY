@@ -1,39 +1,163 @@
+page {
+  height: 100%;       /* 需要让根容器占满屏幕 */
+}
+
+/* 页面容器 */
 .container {
-  margin: 30rpx 0 0 30rpx; /* 上边距和左边距 */
-  border-radius: 5px;
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* 遮罩层，覆盖整个页面 */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);  /* 半透明背景 */
+  z-index: 999;  /* 确保遮罩层覆盖所有内容 */
+}
+
+/* 弹窗样式 */
+.modal {
+  position: fixed;
+  top: 330rpx;  /* 弹窗垂直居中 */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 800rpx;
   background-color: white;
-  width: calc(100% - 30rpx); /* 减去左边距 */
-  padding-bottom: 1rpx;
-}
-
-.add-list {
-  width: 100%;
-  display: flex; /* 使用 Flexbox 进行布局 */
-  justify-content: space-between; /* 在项目之间留出均匀的间距 */
+  border-radius: 20rpx;
+  box-shadow: 0 40rpx 80rpx rgba(0, 0, 0, 0.2);
+  z-index: 1000;  /* 确保弹窗位于遮罩层上方 */
+  padding: 40rpx;
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  outline-color: rgb(230, 230, 230);
 }
 
-.btn {
-  background-color: gold;
-  width: 30%; /* 减小宽度，根据需要调整 */
-  padding: 5px 10px; /* 为按钮设置内边距，可以根据需要进行调整 */
-  margin-left: auto; /* 自动边距将按钮推至右侧 */
-  border: none; /* 去除默认边框 */
-  border-radius: 5px; /* 添加圆角效果，如果需要的话 */
-  cursor: pointer; /* 鼠标悬停时显示指针 */
-}
-.checked {
-  text-decoration: line-through;
-  color: blue;
-}
-.add-list-container{
-  margin:auto;
+/* 弹窗内容 */
+.modal-content {
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
+
+/* 按钮样式 */
+.modal-buttons button {
+  margin: 20rpx;
+  padding: 20rpx 40rpx;
+  font-size: 32rpx;
+  cursor: pointer;
+}
+
+/* 禁用任务列表项 */
+.add-list-container {
+  pointer-events: none;  /* 禁用任务列表交互 */
+  font-weight: bold; /* 加粗字体 */
+  font-size: 40rpx; /* 字体大小为24px */
+  width: 100%;      /* 宽度占满屏幕 */
+  height: 500rpx;     /* 高度占下半屏，vh表示视窗高度的百分比 */
+  background-color: #f0f0f0; /* 可选，设置背景颜色 */
+  padding: 40rpx;    /* 可选，设置内边距 */
+  box-sizing: border-box; /* 防止内边距影响尺寸 */
+}
+
+/* 启用任务列表交互 */
+.add-list-container.enabled {
+  pointer-events: auto;
+}
+
+/* 任务列表的样式 */
+.add-list {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20rpx;
+  border-bottom: 2rpx solid #eee;
+}
+
+.add-list1 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20rpx;
+  border-bottom: 2rpx solid #eee;
+  background-color: #b8e6c6af;
+}
+
+/* 任务文字和打钩样式 */
 .item-text {
-  width: 100px; /* 根据需要设置固定宽度 */
-  white-space: nowrap; /* 防止换行 */
-  overflow: hidden; /* 隐藏超出元素的内容 */
-  text-overflow: ellipsis; /* 添加省略号 */
+  flex: 1;
+  margin-left: 20rpx;
+}
+
+.checked {
+  color: #14f10ce1;  /* 打钩任务文字变色 */
+  text-decoration: line-through;
+}
+
+.checkbox-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.btn1 {
+  background-color: #0ccc12; /* 设置背景颜色 */
+}
+
+.btn0 {
+  background-color: #838a83c2; /* 设置背景颜色 */
+}
+
+.imags-news {
+  width: 100%;       /* 宽度占满屏幕 */
+  height: 500rpx;      /* 高度占视口的一半 */
+  background-color: #f0f0f0; /* 可选，设置背景颜色 */
+  padding: 40rpx;     /* 可选，设置内边距 */
+  box-sizing: border-box; /* 防止内边距影响尺寸 */
+}
+
+.mathtext {
+  display: flex;             /* 水平排列子元素 */
+  align-items: flex-start;   /* 垂直顶部对齐 */
+ 
+  text-align: center;      /* 文字居中 */
+  gap: 20rpx;                 /* 元素之间的间距 */
+}
+
+/* 右侧文本样式 */
+.info {
+  font-size: 32rpx;         /* 设置字体大小 */
+  color: #333;             /* 设置文本颜色 */
+}
+
+/* 高亮显示的数字 */
+.highlight {
+  font-size: 36rpx;         /* 调整数字字体大小 */
+  color: blue;             /* 设置数字字体颜色 */
+  font-weight: bold;       /* 加粗 */
+  
+}
+
+/* 设置按钮样式 */
+.btn {
+  width: 40rpx !important; /* 设置宽度 */
+  height: 80rpx;           /* 设置高度 */
+  background-color: #1E90FF;  /* 设置按钮背景色 */
+  color: white;            /* 设置文字颜色 */
+  justify-content: center; /* 水平居中 */
+  align-items: center;    /* 垂直居中 */
+  border: none;            /* 去除默认边框 */
+  font-size: 28rpx;         /* 设置字体大小 */
+  display: flex;   /* 改为内联块级元素，确保不会拉伸 */
+  border-radius: 50%;      /* 圆形按钮 */
+}
+
+.img-news {
+  width: auto;
 }

@@ -14,6 +14,7 @@
       "disablePlugins": [],
       "outputPath": ""
     },
+    "condition": false,
     "ignoreUploadUnusedFiles": true
   },
   "condition": {},
@@ -25,5 +26,5 @@
     "ignore": [],
     "include": []
   },
-  "appid": "wxcbdc974799ba4968"
+  "appid": "wx4acbf2f32478525e"
 }

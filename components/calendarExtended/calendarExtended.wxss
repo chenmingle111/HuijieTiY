@@ -1,0 +1,134 @@
+/* components/calendarExtended/calendarExtended.wxss */
+
+/* 日历的基本布局 */
+.spaceAroundCenter {
+  display: flex;
+  flex-wrap: wrap;  /* 保证行内内容换行显示 */
+  justify-content: space-around;  /* 项目之间均匀分布 */
+  align-items: center;  /* 垂直居中对齐 */
+  margin: 1rpx 0;  /* 为了使日历不至于紧贴页面边缘，添加一些间距 */
+}
+
+.flex-item {
+  width: 90rpx;  /* 每个日期占据屏幕宽度的 1/7 */
+  text-align: center;
+}
+
+.item-content {
+  padding: 20rpx 0;
+  text-align: center;
+  background-color: #f5f5f5;  /* 设置默认背景颜色 */
+  border-radius: 50%;  /* 日期项圆形 */
+}
+
+/* 当前日期 */
+.bk-color-day {
+  color: rgb(10, 71, 151);
+  font-weight: bolder;
+  font-size: 36rpx;
+  border-radius: 50%;
+}
+
+/* 当前选中日期 */
+.bk-color-dayClick {
+  color: #fff;
+  background-color: #50f328;  /* 选中日期的背景颜色 */
+  transform: scale(1.05);
+  transition: background-color 0.3s, transform 0.3s; /* 添加过渡效果 */
+}
+/*历史记录日期*/
+.bk-color-dayHistory {
+  color: #fff; /* 字体颜色 */
+  background-color: #36b310; /* 可以选择一个历史日期的颜色 */
+  transition: background-color 0.3s, transform 0.3s; /* 添加过渡效果 */
+}
+
+/* 恢复到普通状态时的样式 */
+.item-content {
+  transition: background-color 0.3s; /* 过渡效果 */
+}
+
+.item-content-current-day {
+  flex-grow: 2;  /* 当前日期项占据更多空间 */
+}
+
+/* 日历对话框容器样式（普通页面布局） */
+.my-dialog {
+  opacity: 1;
+  position: relative;  /* 去掉 fixed 定位，改为普通布局 */
+  width: 100%;  /* 日历容器宽度 */
+  background-color: transparent; /* 背景透明 */
+}
+
+.my-dialog .my-mask {
+  display: none; /* 隐藏遮罩层 */
+}
+
+.my-dialog .my-container {
+  position: relative;  /* 使用正常布局，取消 fixed 定位 */
+  width: 100%;  /* 容器宽度 */
+  margin-top: 20rpx;  /* 页面顶部边距 */
+  background-color: #fff;  /* 背景色 */
+  text-align: center;
+  border-radius: 10rpx;  /* 圆角 */
+  overflow: hidden;
+  box-shadow: 0 4rpx 10rpx rgba(0, 0, 0, 0.1);  /* 添加阴影效果 */
+  padding: 20rpx;  /* 容器内边距 */
+}
+
+/* 日历的标题样式 */
+.my-dialog .my-container .title {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 20rpx 0 0 0;
+  text-align: center;
+  font-weight: 400;
+  font-size: 36rpx;
+  color: #303133;
+}
+
+/* 日历日期内容的行样式 */
+.my-dialog .my-container .content {
+  margin: 10rpx 0 20rpx;
+  display: flex;
+  width: 100%;
+  line-height: 50rpx;
+  text-align: left;
+}
+
+.my-dialog .my-container .content .row {
+  margin: 0 10%;
+  width: 80%;
+  font-size: 52rpx;
+  color: #606266;
+  word-break: break-all;
+}
+
+/* 按钮区域样式 */
+.my-dialog .my-container .btn-row {
+  padding: 10rpx 0 0;
+  display: flex;
+  width: 100%;
+  height: 68rpx;
+  line-height: 68rpx;
+  font-size: 36rpx;
+  border-top: 1rpx solid #c0c4cc;
+}
+
+/* 确认按钮 */
+.my-dialog .my-container .btn-row .confirm {
+  float: right;
+  width: 50%;
+  height: 100%;
+  color: #86c2ec;
+}
+
+/* 取消按钮 */
+.my-dialog .my-container .btn-row .cancel {
+  color: #606266;
+  float: right;
+  width: calc(50% - 2rpx);
+  height: 100%;
+  border-right: 1rpx solid #c0c4cc;
+}

@@ -1,19 +1,32 @@
 /* index.wxss */
-
-
+body{
+  height: 150px;
+  width: 150px;
+}
 .arrow-container {
   position: absolute;
   bottom: 10px; /* 距离底部10px */
   left: 50%;
   transform: translateX(-50%);
-  animation: bounce 1s infinite; /* 添加跳动动画 */
+  animation: bounce 1s infinite ease-in-out; /* 添加跳动动画，使用 ease-in-out 缓动效果 */
+  will-change: transform; /* 优化动画性能 */
 }
+.ec-canvas {
+  width: 100%; /* 比如调整宽度为100% */
+  height: 300px; /* 调整高度为300px或其他数值 */
+}
+
 
 .arrow-icon {
-  width: 30px; /* 箭头图标的宽度 */
-  height: 30px; /* 箭头图标的高度 */
+  background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMjgiIGhlaWdodD0iMTI4IiB2aWV3Qm94PSIwIDAgMjA0OCAyMDQ4Ij48cGF0aCBmaWxsPSJjdXJyZW50Q29sb3IiIGQ9Im0xOTY1IDExMDFsLTk0MSA5NDFsLTk0MS05NDFsOTAtOTBsNzg3IDc4N1YwaDEyOHYxNzk4bDc4Ny03ODd6Ii8+PC9zdmc+');
+  width: 100px; /* 箭头图标的宽度 */
+  height: 100px; /* 箭头图标的高度 */
 }
-
+.ec-container {
+  width: 80%; /* 设置宽度为屏幕宽度的75% */
+  margin: 0 auto; /* 自动边距设置来水平居中 */
+  height: 500px; /* 设置高度，或者按需调整 */
+}
 @keyframes bounce {
   0%, 100% {
     transform: translateX(-50%) translateY(0); /* 初始和结束状态 */
@@ -22,8 +35,35 @@
     transform: translateX(-50%) translateY(-10px); /* 中间跳动状态 */
   }
 }
+.health-status {
+  margin: 20px 0;  /* 上下间距 */
+  font-size: 16px;  /* 字体大小 */
+  color: #ff6b6b;   /* 红色 */
+  text-align: center; /* 文本居中 */
+}
 
-ec-canvas {
-  width: 100%;
-  height: 100%;
+/* 响应式设计：针对不同屏幕调整箭头大小 */
+@media (max-width: 320px) {
+  .arrow-icon {
+    width: 25px;
+    height: 25px;
+  }
+}
+
+@media (min-width: 321px) and (max-width: 480px) {
+  .arrow-icon {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+@media (min-width: 481px) {
+  .arrow-icon {
+    width: 35px;
+    height: 35px;
+  }
+  
+}
+.health-status {
+  white-space: pre-line;
 }

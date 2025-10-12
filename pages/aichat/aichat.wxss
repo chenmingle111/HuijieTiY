@@ -1,0 +1,84 @@
+/* pages/aichat/aichat.wxss */
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  padding: 20rpx;
+  box-sizing: border-box;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+}
+
+.message-list {
+  flex: 1;
+  overflow-y: auto;
+  margin-bottom: 20rpx;
+}
+
+.message-item {
+  margin-bottom: 20rpx;
+  display: flex;
+}
+
+.message-item.user {
+  justify-content: flex-end;
+}
+
+.message-item.bot {
+  justify-content: flex-start;
+}
+
+.message-content {
+  max-width: 70%;
+  padding: 20rpx 25rpx;
+  border-radius: 25rpx;
+  word-wrap: break-word;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease;
+}
+
+.message-item.user .message-content {
+  background: linear-gradient(135deg, #6e8efb, #4a6cf7);
+  color: white;
+}
+
+.message-item.bot .message-content {
+  background: white;
+  color: #333;
+  border: 1rpx solid #eee;
+}
+
+.input-area {
+  display: flex;
+  align-items: center;
+  padding: 20rpx;
+  background: white;
+  border-radius: 25rpx;
+  box-shadow: 0 -2rpx 10rpx rgba(0, 0, 0, 0.05);
+}
+
+.input {
+  flex: 1;
+  height: 90rpx;
+  padding: 0 25rpx;
+  border: none;
+  border-radius: 20rpx;
+  margin-right: 20rpx;
+  background: #f5f7fa;
+  font-size: 28rpx;
+}
+
+.send-btn {
+  width: 150rpx;
+  height: 90rpx;
+  background: linear-gradient(135deg, #6e8efb, #4a6cf7);
+  color: white;
+  border-radius: 20rpx;
+  font-weight: bold;
+  box-shadow: 0 2rpx 10rpx rgba(110, 142, 251, 0.3);
+  text-align: center;
+
+  /* 使用 Flex 布局 */
+  display: flex;
+  justify-content: center; /* 水平方向居中 */
+  align-items: center; /* 竖直方向居中 */
+}

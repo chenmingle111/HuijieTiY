@@ -1,0 +1,11 @@
+<!--pages/find/find.wxml-->
+<view class="news-container">
+  <view class="news-item" wx:for="{{newsList}}" wx:key="index" bindtap="bindViewTap" data-url="{{item.url}}">
+    <image class="news-image" src="{{item.image}}" mode="aspectFill"></image>
+    <view class="news-content">
+      <text class="news-title">{{item.title}}</text>
+      <text class="news-description">{{item.description}}</text>
+      <text class="news-time">{{item.time}}</text>
+    </view>
+  </view>
+</view>

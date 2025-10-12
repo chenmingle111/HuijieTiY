@@ -6,18 +6,29 @@ Page({
   data: {
     startX: 0,  // 记录触摸开始时的X轴位置
     startY: 0,  // 记录触摸开始时的Y轴位置
-    userInfo: '',
     ec: {
       onInit: function (canvas, width, height, dpr) {
-        chart = echarts.init(canvas, null, {
-          width: width,
-          height: height,
-          devicePixelRatio: dpr
-        });
-        canvas.setChart(chart);
-        return chart;
+        try {
+          chart = echarts.init(canvas, 'light', {  // 使用“light”主题
+            width: width,
+            height: height,
+            devicePixelRatio: dpr
+          });
+          canvas.setChart(chart);
+          return chart;
+        } catch (err) {
+          console.error('ECharts init error:', err);
+        }
       }
-    }
+    },
+    namearry:{
+      'a':'白细胞计数',
+      'b':'中性粒细胞计数', 
+      'r':'血小板计数',
+       'c':'淋巴细胞计数', 
+       'k':'血红蛋白计数',
+       'j':'红细胞计数',
+    },
   },
 
   onLoad() {
@@ -30,130 +41,203 @@ Page({
   onUnload() {
    chart=null;
   },
-  
-  initRadarChart() {
-    const checkChartReady = () => {
-      if (chart) {
-        this.fetchDataAndSetChart();
-      } else {
-        setTimeout(checkChartReady, 100); // 等待 chart 初始化
-      }
-    };
-    checkChartReady();
-  },
-  fetchDataAndSetChart() {
-    // 从网络获取历史数据
-    wx.request({
-      url: 'https://zb-29.zicp.fun/ZbApi-LeLe/Sp?sp_name=ACML_GetHistoryData&db_name=Sen', //
-      method: 'GET',
-      success: (res) => {
-        if (!res.data || res.data.length === 0) {
-          console.error('没有可用的历史数据。');
-          return;
-        }
-  
-        const latestData = res.data[res.data.length - 1] || {};
-        if (latestData && latestData.time) {
-          const latestTime = new Date(latestData.time).toLocaleString();
-          this.processChartData(latestData, latestTime);
-        } else {
-          console.error('最新数据不可用。');
-        }
-      },
-      fail: () => {
-        console.error('从网络获取历史数据失败');
+  // 更新设置雷达图的函数
+ fetchDataAndSetChart() {
+  wx.request({
+    url: 'https://zb-29.zicp.fun/ZbApi-LeLe/Xp',
+    method: 'POST',
+    header: {
+      'content-type': 'application/json',
+      'spName': 'ACML_GetRadar'
+    },
+    data: { UserID: 1 },
+    success: (res) => {
+      if (!res.data || !Array.isArray(res.data.record_set_0)) {
+        console.error('Data format is incorrect');
         wx.showToast({
-          title: '获取历史数据失败',
-          icon: 'none',
+          title: '数据格式不正确',
+          icon: 'none'
         });
+        return;
       }
-    });
-  },
-  
-  processChartData(latestData, latestTime) {
-    // 从网络获取用户信息
-    wx.request({
-      url: 'https://zb-29.zicp.fun/ZbApi-LeLe/Sp?sp_name=ACML_GetHistoryData&db_name=Sen', 
-      method: 'GET',
-      success: (userRes) => {
-        const { age, gender } = userRes.data;
-  
-        const { zeroValues, maxValues } = this.getValuesBasedOnAgeAndGender(age, gender);
-        const values = [
-          latestData.a,
-          latestData.k,
-          latestData.r,
-          latestData.b,
-          latestData.c,
-          latestData.j
-        ];
-  
-        if (values.some(value => value === null || value === undefined)) {
-          console.warn('某些图表数据值缺失，正在重定向到 chart-red 页面。');
-          wx.reLaunch({
-            url: '/pages/chart-red/chart-red',
-          });
-          return;
-        }
-  
-        console.log('雷达图值:', values);
-        setRadarChartOption(values, zeroValues, maxValues, latestTime);
-      },
-      fail: () => {
-        console.error('获取用户信息失败');
-        wx.showToast({
-          title: '获取用户信息失败',
-          icon: 'none',
-        });
-      }
-    });
-  },
 
-  getValuesBasedOnAgeAndGender(age, gender) {
-    let zeroValues, maxValues;
-    if (age >= 18) {
-      if (gender === '男') {
-        zeroValues = [4, 110, 108, 50, 1.5, 4.0];
-        maxValues = [10, 160, 273, 70, 3.3, 5.5];
-      } else {
-        zeroValues = [4, 110, 148, 50, 1.5, 3.5];
-        maxValues = [10, 160, 257, 70, 3.3, 5.0];
+      const latestRecords = this.processRecords(res.data.record_set_0);
+      const latestTime = latestRecords.latestTime;
+      console.log('tim',latestTime)
+      const age = latestRecords.age;
+      const gender = latestRecords.gender;
+      
+      if (Object.keys(latestRecords.values).length === 0) {
+        console.error('Missing or incomplete data');
+        wx.showToast({
+          title: '数据不完整',
+          icon: 'none'
+        });
+        return;
       }
-    } else {
-      if (gender === '男') {
-        zeroValues = [5, 120, 108, 50, 1.5, 4.0];
-        maxValues = [12, 140, 273, 70, 3.3, 5.5];
-      } else {
-        zeroValues = [5, 120, 148, 50, 1.5, 4.0];
-        maxValues = [12, 140, 257, 70, 3.3, 5.5];
+      
+      this.processChartData(latestRecords, latestTime, age, gender);
+    },
+    fail: (err) => {
+      console.error('Request failed:', err);
+      wx.showToast({
+        title: '数据请求失败',
+        icon: 'none'
+      });
+    }
+  });
+},
+
+setRadarChartOption(values, zeroValues, maxValues, latestTime) {
+  console.log('雷达图数据为:', { values, zeroValues, maxValues });
+  const maxIndicators = values.map((value, index) => Math.max(value, zeroValues[index], maxValues[index]));
+  console.log('time', latestTime);
+
+  const option = {
+    title: {
+      text: `雷达图 - 最后记录时间: ${latestTime}`,
+      textStyle: {
+        fontSize: 14
+      },
+      top: '8%', // 调整标题的位置，使整体下移并增大与图例的间距
+    },
+    legend: {
+      data: ['你的记录', '健康标准下的最低值', '健康标准下的最高数值'],
+      orient: 'vertical', // 设置为竖直排列
+      left: 'center', // 水平居中
+      top: '15%', // 调整图例的位置，使其整体下移，并增大与雷达图的间距
+      itemGap: 20 // 图例项目之间的间隔，增加区分度
+    },
+    radar: {
+      indicator: [
+        { name: '白细胞计数', max: maxIndicators[0] },
+        { name: '中性粒细胞', max: maxIndicators[1] },
+        { name: '淋巴细胞', max: maxIndicators[2] },
+        { name: '红细胞计数', max: maxIndicators[3] },
+        { name: '血红蛋白', max: maxIndicators[4] },
+        { name: '血小板计数', max: maxIndicators[5] }
+      ],
+      center: ['50%', '63%'], // 调整雷达图的垂直位置，确保与图例保持距离
+      radius: '50%' // 仍可根据需要调整
+    },
+    series: [
+      {
+        name: '你的记录',
+        type: 'radar',
+        data: [{ value: values, name: '你的记录' }],
+        areaStyle: {
+          normal: {
+            color: 'rgba(0, 102, 204, 0.7)', // 增加区分度，稍微减少透明度
+          },
+        },
+      },
+      {
+        name: '健康标准下的最低值',
+        type: 'radar',
+        data: [{ value: zeroValues, name: '健康标准下的最低值' }],
+        areaStyle: {
+          normal: {
+            color: 'rgba(173, 216, 230, 0.7)', // 增加区分度，稍微减少透明度
+          },
+        },
+      },
+      {
+        name: '健康标准下的最高数值',
+        type: 'radar',
+        data: [{ value: maxValues, name: '健康标准下的最高数值' }],
+        areaStyle: {
+          normal: {
+            color: 'rgba(0, 153, 255, 0.7)', // 增加区分度，稍微减少透明度
+          },
+        },
+      },
+    ],
+  };
+
+  console.log('图表选项:', option); // 查看 option 内容
+  chart.setOption(option);
+  chart.resize();
+},
+
+
+
+
+processRecords(records) {
+  const values = {};
+  let latestTime;
+  let age = 18;
+  let gender = '未知';
+  
+  records.forEach(record => {
+    if (record.LatestTime && record.FieldKey && record.FieldValue !== undefined && record.Gender && record.Age) {
+      const key = record.FieldKey.trim().toLowerCase(); // 清除空格，并转为小写保持一致性
+      const value = record.FieldValue;
+      //这里有盖亚，不要理他
+      latestTime=record.LatestTime;
+      age = record.Age; // 假设所有记录的年龄相同
+      gender = record.Gender; // 假设所有记录的性别相同
+
+      // 只处理雷达图需要的key
+      if (['a', 'b', 'c', 'j', 'k', 'r'].includes(key)) {
+        values[key] = value;
       }
     }
-    return { zeroValues, maxValues };
-  },
+  });
 
-  getValuesBasedOnAgeAndGender(age, gender) {
-    let zeroValues, maxValues;
-    if (age >= 18) {
-      if (gender === '男') {
-        zeroValues = [4, 110, 108, 50, 1.5, 4.0];
-        maxValues = [10, 160, 273, 70, 3.3, 5.5];
-      } else {
-        zeroValues = [4, 110, 148, 50, 1.5, 3.5];
-        maxValues = [10, 160, 257, 70, 3.3, 5.0];
-      }
+  return { latestTime, age, gender, values };
+},
+initRadarChart() {
+  const checkChartReady = () => {
+    if (chart) {
+      this.fetchDataAndSetChart();
     } else {
-      if (gender === '男') {
-        zeroValues = [5, 120, 108, 50, 1.5, 4.0];
-        maxValues = [12, 140, 273, 70, 3.3, 5.5];
-      } else {
-        zeroValues = [5, 120, 148, 50, 1.5, 4.0];
-        maxValues = [12, 140, 257, 70, 3.3, 5.5];
-      }
+      setTimeout(checkChartReady, 50); // 等待 chart 初始化
     }
-    return { zeroValues, maxValues };
-  },
+  };
+  checkChartReady();
+},
+
+processChartData(latestRecords, latestTime, age, gender) {
+  const chartKeys = ['a', 'b', 'c', 'j', 'k', 'r'];  // 对应于雷达图的轴
+  const values = chartKeys.map(key => latestRecords.values[key] || 0);
+  let zeroValues, maxValues;
+
+  // 定义健康范围
+  if (age >= 18) {
+    zeroValues = (gender === '男') ? [4, 110, 108, 1.8, 1.5, 4.0] : [4, 110, 148, 1.9, 1.5, 4.0];
+    maxValues = (gender === '男') ? [10, 160, 273, 8.3, 3.3, 5.5] : [10, 160, 257, 7.9, 3.3, 5.5];
+  } else {
+    zeroValues = (gender === '男') ? [5, 120, 108, 1.8, 1.5, 4.0] : [5, 120, 148, 1.9, 1.5, 4.0];
+    maxValues = (gender === '男') ? [12, 140, 273, 8.3, 3.3, 5.5] : [12, 140, 257, 7.9, 3.3, 5.5];
+  }
+
+  // 检查每个指标是否超过了正常范围
+  const issues = values.map((value, index) => {
+    if (value < zeroValues[index]) {
+      return `${this.data.namearry[chartKeys[index]]}（${value}）低于正常范围（${zeroValues[index]}）`;
+    } else if (value > maxValues[index]) {
+      return ` ${this.data.namearry[chartKeys[index]]}（${value}）高于正常范围（${maxValues[index]}）`;
+    }
+    return null; // 正常值不返回任何信息
+  }).filter(issue => issue !== null); // 过滤掉正常值
+
+  // 更新健康状态信息
+  let healthStatus;
+  if (issues.length > 0) {
+    healthStatus = '注意:\n' + issues.join('\n');
+  } else {
+    healthStatus = '你的身体看起来很健康，请继续保持！';
+  } 
+  
+  // 使用 setData 更新页面数据
+  this.setData({
+    healthStatus
+  });
+
+  this.setRadarChartOption(values, zeroValues, maxValues, latestTime); // 设置雷达图
+},
      // 记录手势开始的位置
-  handleTouchStart(e) {
+handleTouchStart(e) {
     this.setData({
       startX: e.touches[0].clientX,  // 记录触摸点的 X 轴坐标
       startY: e.touches[0].clientY   // 记录触摸点的 Y 轴坐标
@@ -188,76 +272,10 @@ Page({
   handleTouchEnd(e) {
     // 手势结束逻辑（如果有需要）
   },
- 
+ changered(){
+  wx.redirectTo({
+    url: '/pages/chart-red/chart-red'  // 正确的页面路径
+  });
+ }
 });
 
-// 更新设置雷达图的函数
-function setRadarChartOption(values, zeroValues, maxValues, latestTime) {
-  const maxIndicators = values.map((value, index) => Math.max(value, zeroValues[index], maxValues[index]));
-
-  const option = {
-    title: {
-      text: `雷达图 - 最后记录时间: ${latestTime}`, // 加入格式化后的时间
-      textStyle: {
-        fontSize: 14
-      }
-    },
-    //雷达图设置
-    legend: {
-      data: ['Actual', 'Low', 'High'],
-      orient: 'horizontal',
-      top: '10%'
-    },
-    //指标设置
-    radar: {
-      indicator: [
-        { name: '白细胞计数', max: maxIndicators[0] },
-        { name: '血红蛋白', max: maxIndicators[1] },
-        { name: '血小板计数', max: maxIndicators[2] },
-        { name: '中性粒细胞%', max: maxIndicators[3] },
-        { name: '淋巴细胞', max: maxIndicators[4] },
-        { name: '红细胞计数', max: maxIndicators[5] }
-      ],
-      center: ['50%', '50%'],
-      radius: '65%'
-    },
-    series: [
-      {
-        name: 'Actual',
-        type: 'radar',
-        data: [{ value: values, name: 'Actual' }],
-        areaStyle: {
-          normal: {
-            color: 'rgba(173, 216, 230, 0.5)', // 冰蓝色
-          },
-        },
-      },
-      {
-        name: 'Low',
-        type: 'radar',
-        data: [{ value: zeroValues, name: 'Low' }],
-        areaStyle: {
-          normal: {
-            color: 'rgba(255, 0, 0, 0.5)', // 红色
-          },
-        },
-      },
-      {
-        name: 'High',
-        type: 'radar',
-        data: [{ value: maxValues, name: 'High' }],
-        areaStyle: {
-          normal: {
-            color: 'rgba(0, 255, 0, 0.5)', // 绿色
-          },
-        },
-      },
-    ],
-  };
-
-  chart.setOption(option); // 设置图表选项
-
-  // 调整图表大小
-  chart.resize();
-
-}

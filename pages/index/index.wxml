@@ -1,13 +1,27 @@
-<view class="container">
-  <!-- 使用 <image> 标签显示背景图片 -->
-  <!--<image class="background-image" src="/images/back.jpg" mode="aspectFill" />
-
-  <!-- 显示Logo -->
-  <image class="logo" src="/images/OIP.jpg" mode="widthFix" />
-
-  <!-- 按钮容器 -->
-  <view class="button-container">
-    <button class="action-button" bindtap="updateData">上传报告</button>
-    <button class="action-button" bindtap="viewHistory">我的日志</button>
+<!--index.wxml-->
+<scroll-view class="scrollarea" scroll-y type="list">
+  <view class="container">
+    <view class="userinfo">
+      <block wx:if="{{canIUseNicknameComp && !hasUserInfo}}">
+        <button class="avatar-wrapper" open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar">
+          <image class="avatar" src="{{userInfo.avatarUrl}}"></image>
+        </button>
+        <view class="nickname-wrapper">
+          <text class="nickname-label">昵称</text>
+          <input type="nickname" class="nickname-input" placeholder="请输入昵称" bind:change="onInputChange" />
+        </view>
+      </block>
+      <block wx:elif="{{!hasUserInfo}}">
+        <button wx:if="{{canIUseGetUserProfile}}" bindtap="getUserProfile"> 获取头像昵称 </button>
+        <view wx:else> 请使用2.10.4及以上版本基础库 </view>
+      </block>
+      <block wx:else>
+        <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+        <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+      </block>
+    </view>
+    <view class="usermotto">
+      <text class="user-motto">{{motto}}</text>
+    </view>
   </view>
-</view>
+</scroll-view>

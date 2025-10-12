@@ -1,0 +1,68 @@
+<view class="page-container" style="height: 1322rpx; display: block; box-sizing: border-box">
+  <view class="header">
+    <view class="left-button">
+      <!-- 修正了换行 -->
+      <button class="time-button" bindtap="ainews">时间</button>
+    </view>
+    <view class="right-button">
+      <button class="more-button" bindtap="ainews">更多</button>
+      <view wx:if="{{showOptions}}" class="options">
+        <view class="option">
+          <image src="路径到折线图片" class="option-image" />
+          <text>折线图</text>
+        </view>
+        <view class="option">
+          <image src="路径到打卡图片" class="option-image" />
+          <text>打卡</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+<view class="gesture-area" bindtouchstart="touchStart" bindtouchend="touchEnd">
+  <view class="content" style="height: 556rpx; display: flex; box-sizing: border-box">
+    <view class="chart-container">
+      <ec-canvas id="mychart-dom" canvas-id="mychart-dom" ec="{{ ec }}" />
+    </view>
+  </view>
+</view>
+
+
+  <view class="content1">
+    <navigator class="Reports-button" url="/pages/data-collection/data-collection" open-type="navigate" >
+      <image src="https://s2.loli.net/2024/11/14/x5w8GdzDJ71Lq2e.png" class="Reports-img" />
+      <view class="button-text">
+        <text>报告分析</text>
+        <text class="text105">Report Analysis</text>
+      </view>
+    </navigator>
+
+    <view class="right-container">
+      <navigator class="daka-button" url="/pages/TodoList/TodoList" open-type="navigate">
+        <image src="https://s2.loli.net/2024/11/14/iHZ2jqk17apntKR.png" class="daka-img" />
+        <view class="button-text">
+          <text class="text100">打卡记录</text>
+          <text class="text101">RECORD</text>
+        </view>
+      </navigator>
+
+      <navigator class="history-button" url="/pages/chart-red/chart-red" open-type="navigate">
+        <image src="https://s2.loli.net/2024/11/14/TDGBEA9s4qz6y2F.png" class="history-img" />
+        <view class="button-text">
+          <text>历史数据</text>
+          <text class="text102">DATA</text>
+        </view>
+      </navigator>
+    </view>
+  </view>
+
+  <view class="end">
+    <navigator class="AI-button" url="/pages/aichat/aichat" bindtap="ainews" open-type="navigate">
+      <image src="https://s2.loli.net/2024/11/14/C7u2iNHEB6bVWzS.png"    class="AI-img" />
+      <view class="button-text">
+        <text>智能助手</text>
+        <text class="text108">Assistant</text>
+      </view>
+    </navigator>
+  </view>
+</view>

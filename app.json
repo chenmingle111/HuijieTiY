@@ -1,17 +1,45 @@
 {
   "pages": [
-    "pages/chart-radar/chart-radar",
+    "pages/home/home",
+    "pages/find/find",
+    "pages/user/user",
     "pages/index/index",
-  
+    "pages/Reports/Reports",
+    "pages/login/login",
+    "pages/chart-radar/chart-radar",
+    "pages/chart-red/chart-red",
     "pages/data-collection/data-collection",
-    "pages/chart-red/chart-red"
-
+    "pages/TodoList/TodoList",
+    "pages/webview/webview",
+    "pages/aichat/aichat"
+  
   ],
+  "tabBar": {
+    "list": [{
+      "pagePath": "pages/home/home",
+      "text": "首页",
+      "iconPath": "/images/home.png",
+      "selectedIconPath": "/images/home-fill.png"
+    },
+    {
+     "pagePath": "pages/find/find",
+     "text": "发现",
+     "iconPath": "/images/eye.png",
+     "selectedIconPath": "/images/eye-fill.png"
+   },{
+     "pagePath": "pages/user/user",
+     "text": "我的",
+     "iconPath": "/images/user.png",
+     "selectedIconPath": "/images/user-fill.png"
+   }]
+  },
   "window": {
     "navigationBarTextStyle": "black",
-    "navigationBarTitleText": "Weixin",
-    "navigationBarBackgroundColor": "#ffffff"
+    "navigationBarTitleText": "慧知体语",
+    "navigationBarBackgroundColor": "#FFFFFF"
+                  
   },
+  
   "style": "v2",
   "componentFramework": "glass-easel",
   "sitemapLocation": "sitemap.json",

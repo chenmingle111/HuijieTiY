@@ -1,0 +1,278 @@
+/* 公共样式 */
+page {
+  width: 100%;
+  height: 100%;
+  background: #f0f0f0;
+}
+.background-image {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+/* 登录界面样式 */
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  
+  background-size: cover;
+  filter: brightness(0.9); /* 增加背景亮度 */
+}
+
+.login-page {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+}
+
+.login-box {
+  background-color: rgba(255, 255, 255, 0.85);
+  padding: 40rpx;
+  border-radius: 20rpx;
+  width: 80%;
+  max-width: 600rpx;
+  box-shadow: 0 8rpx 30rpx rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.input-group {
+  margin-bottom: 30rpx;
+  width: 100%;
+}
+
+.input {
+  width: 100%;
+  padding: 20rpx;
+  border: none;
+  border-radius: 10rpx;
+  font-size: 32rpx;
+  background-color: rgba(255, 255, 255, 0.9);
+  box-shadow: inset 0 2rpx 5rpx rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s;
+}
+
+.input:focus {
+  box-shadow: inset 0 2rpx 8rpx rgba(0, 0, 0, 0.2);
+  outline: none;
+}
+
+.login-button {
+  width: 100%;
+  padding: 15rpx;
+  background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%);
+  color: white;
+  border: none;
+  border-radius: 10rpx;
+  font-size: 36rpx;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.login-button:disabled {
+  background: #aaa;
+  cursor: not-allowed;
+}
+
+.login-button:hover:not(:disabled) {
+  transform: translateY(-2rpx);
+}
+
+.options {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20rpx;
+  width: 100%;
+}
+
+.link {
+  color: #1E90FF; /* 设置文本颜色为深天蓝 */
+  font-size: 30rpx; /* 设置字体大小 */
+  text-decoration: none; /* 添加下划线 */
+  margin-right: 20rpx; /* 设置右边距，使得两个文本之间有间距 */
+  cursor: pointer; /* 设置鼠标悬停时为指针样式 */
+  transition: color 0.3s; /* 增加颜色渐变效果 */
+}
+
+.link:hover {
+  color: #104E8B; /* 悬停时的颜色效果 */
+}
+
+.third-party {
+  margin-top: 30rpx;
+  text-align: center;
+}
+
+.third-party-text {
+  margin-bottom: 15rpx;
+  font-weight: bold;
+}
+
+.icons {
+  display: flex;
+  justify-content: space-around;
+}
+
+.icon {
+  width: 50rpx;
+  height: 50rpx;
+  opacity: 0.8;
+  transition: opacity 0.3s, transform 0.3s;
+}
+
+.icon:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+/* 头部背景图片 */
+.container_head {
+  height: 370rpx;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+.head_img {
+  position: absolute;
+  width: 100%;
+  height: 370rpx;
+  filter: brightness(0.7); /* 降低亮度以突出前景内容 */
+}
+
+.head_pers_info {
+  height: 200rpx;
+  width: 100%;
+  margin-bottom: 50rpx;
+  display: flex;
+  align-items: center;
+  z-index: 1;
+}
+
+.head_pic {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 60rpx;
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.2); /* 增加阴影效果 */
+}
+
+.head_pic_content {
+  width: 110rpx;
+  height: 110rpx;
+  border-radius: 55rpx;
+}
+
+.inf_content {
+  display: flex;
+  flex-direction: column;
+  margin-left: 20rpx;
+  color: #ffffff;
+  padding-bottom: 5rpx;
+}
+
+.user_info {
+  text-align: left;
+  font-size: 32rpx;
+  font-weight: bold;
+  margin-bottom: 8rpx;
+}
+
+.family_info_ct_phone,
+.family_info_ct {
+  text-align: left;
+  font-size: 28rpx;
+  margin-bottom: 2rpx;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.userItemListView {
+  background: #fff;
+  margin: 24rpx 0;
+  padding-bottom: 20rpx;
+}
+
+.userItemListView > view {
+  display: flex;
+  align-items: center;
+  padding-left: 50rpx;
+  height: 100rpx;
+  border-bottom: 1rpx solid #F1F1F1;
+}
+
+.userItemListView > view:last-child {
+  border: none;
+}
+
+.my_priview {
+  width: 60rpx;
+  height: 60rpx;
+  margin-right: 20rpx;
+}
+
+.arrow {
+  width: 16rpx;
+  height: 16rpx;
+  border-top: 4rpx solid #999;
+  border-right: 4rpx solid #999;
+  transform: rotate(45deg);
+  position: absolute;
+  right: 30rpx;
+}
+
+.userItemListView text {
+  font-size: 30rpx;
+}
+
+.last_view {
+  background: #f0f0f0;
+  width: 100%;
+  height: 1200rpx;
+}
+
+.inf_content {
+  display: flex;
+  flex-direction: column;
+  margin-left: 20rpx;
+  color: #ffffff;
+  padding-bottom: 5rpx;
+}
+
+.user_info {
+  text-align: left;
+  font-size: 32rpx;
+  font-weight: bold;
+  margin-bottom: 8rpx;
+}
+
+.family_info_ct_phone,
+.family_info_ct {
+  text-align: left;
+  font-size: 28rpx;
+  margin-bottom: 2rpx;
+}
+
+.family_info_ct_phone {
+  /* 设置为不省略显示 */
+  white-space: normal;
+  overflow: visible;
+  text-overflow: clip; 
+}
+
+.error-message {
+  color: red;
+  font-size: 28rpx;
+  margin-top: -15rpx;
+  margin-bottom: 10rpx;
+  text-align: left;
+}

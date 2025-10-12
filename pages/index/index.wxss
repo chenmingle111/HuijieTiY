@@ -1,48 +1,62 @@
-/* 页面容器，设置相对定位用于放置背景图 */
-.container {
-  position: relative;
-  height: 100vh; /* 设置高度为视口高度，覆盖整个页面 */
+/**index.wxss**/
+page {
+  height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+}
+.scrollarea {
+  flex: 1;
+  overflow-y: hidden;
+}
+
+.userinfo {
+  display: flex;
+  flex-direction: column;
   align-items: center;
+  color: #aaa;
+  width: 80%;
 }
 
-/* 背景图片设置为绝对定位，覆盖整个页面 */
-.background-image {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1; /* 将背景图片置于内容后面 */
+.userinfo-avatar {
+  overflow: hidden;
+  width: 128rpx;
+  height: 128rpx;
+  margin: 20rpx;
+  border-radius: 50%;
 }
 
-/* logo图片样式 */
-.logo {
-  width: 200rpx;
-  height: 200rpx;
-  margin-bottom: 50rpx;
-  z-index: 1; /* 确保logo显示在前面 */
+.usermotto {
+  margin-top: 200px;
 }
 
-/* 按钮容器样式 */
-.button-container {
+.avatar-wrapper {
+  padding: 0;
+  width: 56px !important;
+  border-radius: 8px;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.avatar {
+  display: block;
+  width: 56px;
+  height: 56px;
+}
+
+.nickname-wrapper {
   display: flex;
-  flex-direction: column;
-  gap: 20rpx; /* 按钮之间的间距 */
-  z-index: 1; /* 确保按钮显示在前面 */
+  width: 100%;
+  padding: 16px;
+  box-sizing: border-box;
+  border-top: .5px solid rgba(0, 0, 0, 0.1);
+  border-bottom: .5px solid rgba(0, 0, 0, 0.1);
+  color: black;
 }
 
-/* 按钮样式 */
-.action-button {
-  width: 400rpx;
-  height: 80rpx;
-  background-color: #007bff; /* 按钮背景色 */
-  color: white;
-  border-radius: 10rpx;
-  font-size: 32rpx;
-  font-weight: bold;
-  text-align: center;
-  line-height: 80rpx; /* 垂直居中文本 */
+.nickname-label {
+  width: 105px;
+}
+
+.nickname-input {
+  flex: 1;
 }

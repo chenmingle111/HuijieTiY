@@ -1,0 +1,22 @@
+<!--pages/aichat/aichat.wxml-->
+<view class="container">
+  <!-- 消息列表 -->
+  <scroll-view class="message-list" scroll-y>
+    <block wx:for="{{messages}}" wx:key="index">
+      <view class="message-item {{item.isUser ? 'user' : 'bot'}}">
+        <view class="message-content">{{item.content}}</view>
+      </view>
+    </block>
+  </scroll-view>
+
+  <!-- 输入区域 -->
+  <view class="input-area">
+    <input 
+      class="input" 
+      placeholder="请输入消息" 
+      value="{{inputValue}}" 
+      bindinput="onInputChange"
+    />
+    <button class="send-btn" bindtap="sendMessage">发送</button>
+  </view>
+</view>

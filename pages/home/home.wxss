@@ -1,0 +1,348 @@
+.page-container {
+  background-color: rgb(242, 242, 242);
+  padding: 10rpx;
+  height: 1322rpx;
+  display: block;
+  box-sizing: border-box;
+}
+
+.header {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 30rpx; 
+  padding: 10rpx;
+  background-color: #f8f8f8;
+  border-bottom: 1rpx solid #ccc;
+}
+
+.left-button, .right-button {
+  display: inline-flex;
+}
+
+.time-button, .more-button {
+  background-color: transparent;
+  border: 2rpx solid #333;
+  border-radius: 4rpx;
+  font-size: 20rpx;
+  color: #333;
+  padding: 5rpx 20rpx;
+  cursor: pointer;
+  width: 121rpx;
+  display: block;
+  box-sizing: border-box;
+  position: relative;
+  left: 0rpx;
+  top: 0rpx;
+}
+
+.content {
+  margin-top: 20rpx;
+  background-color: rgb(252, 251, 251);
+  height: 556rpx;
+  border-radius: 10rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.content1 {
+  margin-top: 20rpx;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.Reports-button, .daka-button, .history-button, .AI-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 48%;
+  height: 200rpx;
+  background-color: rgb(255, 255, 255);
+  color: black;
+  text-align: center;
+  line-height: 1.5;
+  border-radius: 10rpx;
+  margin-bottom: 20rpx;
+  box-shadow: 0 4rpx 6rpx rgba(0, 0, 0, 0.1);
+}
+
+.button-text text {
+  display: block;
+  position: relative;
+  left: 0rpx;
+  top: 0rpx;
+}
+
+.Reports-img, .daka-img, .history-img, .AI-img {
+  width: 60rpx;
+  height: 60rpx;
+  margin-bottom: 10rpx;
+}
+
+.Reports-button image {
+  position: relative;
+  left: 1rpx;
+  top: 114rpx;
+  width: 102rpx;
+  height: 85rpx;
+  display: block;
+  box-sizing: border-box;
+}
+
+.Reports-button .button-text {
+  position: relative;
+  left: -1rpx;
+  top: -153rpx;
+}
+
+.Reports-button .button-text text:nth-child(2) {
+  font-size: 25rpx;
+}
+
+.daka-button image {
+  position: relative;
+  left: 95rpx;
+  top: 67rpx;
+  width: 71rpx;
+  height: 71rpx;
+  display: block;
+  box-sizing: border-box;
+}
+
+.daka-button .button-text {
+  position: relative;
+  left: -79rpx;
+  top: -72rpx;
+}
+
+.daka-button .button-text text:nth-child(2) {
+  width: 113rpx;
+  font-size: 25rpx;
+  display: block;
+  box-sizing: border-box;
+}
+
+.history-button image {
+  position: relative;
+  left: 93rpx;
+  top: 79rpx;
+  width: 74rpx;
+  height: 69rpx;
+  display: block;
+  box-sizing: border-box;
+}
+
+.history-button .button-text {
+  width: 155rpx;
+  height: 90rpx;
+  position: relative;
+  left: -85rpx;
+  top: -61rpx;
+  display: block;
+  box-sizing: border-box;
+}
+
+.history-button .button-text text:nth-child(2) {
+  width: 134rpx;
+  font-size: 25rpx;
+  display: block;
+  box-sizing: border-box;
+}
+
+.AI-button image {
+  position: relative;
+  left: -290rpx;
+  top: 46rpx;
+  width: 86rpx;
+  height: 85rpx;
+  display: block;
+  box-sizing: border-box;
+}
+
+.AI-button .button-text {
+  width: 142rpx;
+  position: relative;
+  left: -141rpx;
+  top: -47rpx;
+  display: block;
+  box-sizing: border-box;
+}
+
+.AI-button .button-text text {
+  width: 118rpx;
+  display: block;
+  box-sizing: border-box;
+}
+
+.right-button .more-button {
+  width: 121rpx;
+  display: block;
+  box-sizing: border-box;
+  left: 0rpx;
+  top: 0rpx;
+}
+
+.left-button .time-button {
+  width: 121rpx;
+  display: block;
+  box-sizing: border-box;
+  left: 0rpx;
+  top: 0rpx;
+}
+
+.content1 .Reports-button image {
+  position: relative;
+  left: 1rpx;
+  top: 114rpx;
+  width: 102rpx;
+  height: 85rpx;
+  display: block;
+  box-sizing: border-box;
+}
+
+.content1 .Reports-button text {
+  position: relative;
+  left: 0rpx;
+  top: 0rpx;
+}
+
+.content1 .Reports-button .text105 {
+  font-size: 25rpx;
+}
+
+.content1 .Reports-button {
+  width: 354rpx;
+  height: 418rpx;
+  display: flex;
+  box-sizing: border-box;
+}
+
+.right-container .daka-button {
+  width: 349rpx;
+  display: flex;
+  box-sizing: border-box;
+}
+
+.right-container .daka-button image {
+  position: relative;
+  left: 95rpx;
+  top: 67rpx;
+  width: 71rpx;
+  height: 71rpx;
+  display: block;
+  box-sizing: border-box;
+}
+
+.right-container {
+  width: 354rpx;
+  display: block;
+  box-sizing: border-box;
+}
+
+.right-container .daka-button .button-text {
+  position: relative;
+  left: -79rpx;
+  top: -72rpx;
+}
+
+.right-container .daka-button .button-text .text100 {
+  position: relative;
+  left: 0rpx;
+  top: 0rpx;
+}
+
+.right-container .daka-button .button-text .text101 {
+  position: relative;
+  left: 0rpx;
+  top: 5rpx;
+  width: 113rpx;
+  display: block;
+  box-sizing: border-box;
+  font-size: 25rpx;
+}
+
+.right-container .history-button {
+  width: 349rpx;
+  display: flex;
+  box-sizing: border-box;
+}
+
+.right-container .history-button image {
+  position: relative;
+  left: 93rpx;
+  top: 79rpx;
+  width: 74rpx;
+  height: 69rpx;
+  display: block;
+  box-sizing: border-box;
+}
+
+.right-container .history-button .button-text {
+  width: 155rpx;
+  height: 90rpx;
+  display: block;
+  box-sizing: border-box;
+  position: relative;
+  left: -85rpx;
+  top: -61rpx;
+}
+
+.right-container .history-button .button-text .text102 {
+  width: 134rpx;
+  display: block;
+  box-sizing: border-box;
+  font-size: 25rpx;
+  position: relative;
+  left: 0rpx;
+  top: 5rpx;
+}
+
+.end {
+  height: 204rpx;
+  display: block;
+  box-sizing: border-box;
+}
+
+.end .AI-button {
+  width: 726rpx;
+  display: flex;
+  box-sizing: border-box;
+}
+
+.end .AI-button image {
+  position: relative;
+  left: -290rpx;
+  top: 46rpx;
+  width: 86rpx;
+  height: 85rpx;
+  display: block;
+  box-sizing: border-box;
+}
+
+.end .AI-button .button-text {
+  width: 142rpx;
+  display: block;
+  box-sizing: border-box;
+  position: relative;
+  left: -141rpx;
+  top: -47rpx;
+}
+
+.end .AI-button .button-text text {
+  width: 160rpx;
+  display: block;
+  box-sizing: border-box;
+}
+
+.end .AI-button .button-text .text108 {
+  width: 118rpx;
+}
+
+.chart-container {
+  width: 690rpx;
+  height: 700rpx;
+}

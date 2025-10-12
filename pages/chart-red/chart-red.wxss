@@ -1,84 +1,127 @@
-.button-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+.page {
   padding: 20rpx;
+  background-color: #f5f5f5;
 }
 
-.level-1,
-.level-2 {
+.button-container {
   display: flex;
-  justify-content: space-between;
-  width: 100%;
+  flex-direction: column;
+  margin-bottom: 20rpx;
+}
+
+.level-1, .level-2, .secondButton {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin-bottom: 20rpx;
 }
 
 .spec1 {
   margin: 10rpx;
-  width: 5%; /* 确保每行 4 个按钮 */
-  background-color: #4CAF50;
-  color: white;
+  flex: 1 0 22%; /* 每行显示 4 个按钮，间距稍大 */
+  background-color: #3498db; /* 改成主题颜色 */
+  color: #fff;
   border: none;
-  padding: 5rpx 1rpx;
-  border-radius: 10rpx;
-  text-align: center;
+  padding: 15rpx 0;
+  border-radius: 12rpx;
+  box-shadow: 0 2rpx 4rpx rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s;
 }
 
-.secondButton {
-  display: flex;
-  flex-wrap: wrap; /* 允许换行 */
-  width: 100%; /* 确保父元素占满宽度 */
+.spec1.active {
+  background-color: #2e4d86; /* 激活状态颜色 */
+  color: #fff;
 }
-
-button { /* 统一所有按钮的样式 */
+.spec2 {
   margin: 10rpx;
-  flex: 1 0 23%; /* 每行显示 4 个按钮 */
-  background-color: #4CAF50;
-  color: white;
+  flex: 1 0 22%; /* 每行显示 4 个按钮，间距稍大 */
+  background-color:  #2ecc71; /* 改成主题颜色 */
+  color: #fff;
   border: none;
-  padding: 12rpx 0;
-  border-radius: 10rpx;
-  text-align: center;
+  padding: 15rpx 0;
+  border-radius: 12rpx;
+  box-shadow: 0 2rpx 4rpx rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s;
 }
 
-
+.spec2.active {
+  background-color: #1da556; /* 激活状态颜色 */
+  color: #fff;
+}
 
 .chart-container {
   width: 100%;
   height: 400px;
-}
-.spec1{
-  background-color:darkcyan
-}
-.spec1.active {
-  background-color:lightskyblue;
-  color: black
-}
-.spec2.active {
-  background-color:chartreuse;/* 激活状态的颜色 */
-  color: black
+  margin-bottom: 20rpx;
+  background-color: #fff;
+  border-radius: 12rpx;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.1);
 }
 
-.text-container{
+.text-container {
+  text-align: center;
   font-weight: bold;
-}
-.arrow-container {
-  position: absolute;
-  bottom: 10px; /* 距离底部10px */
-  left: 50%;
-  transform: translateX(-50%);
-  animation: bounce 1s infinite; /* 添加跳动动画 */
-}
-
-.arrow-icon {
-  width: 30px; /* 箭头图标的宽度 */
-  height: 30px; /* 箭头图标的高度 */
+  margin-bottom: 20rpx;
 }
 
 @keyframes bounce {
   0%, 100% {
-    transform: translateX(-50%) translateY(0); /* 初始和结束状态 */
+    transform: translateX(-50%) translateY(0);
   }
   50% {
-    transform: translateX(-50%) translateY(-10px); /* 中间跳动状态 */
+    transform: translateX(-50%) translateY(-10px);
   }
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 9998;
+}
+
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  background-color: #fff;
+  border-radius: 15rpx;
+  z-index: 9999;
+  box-shadow: 0 4rpx 8rpx rgba(0, 0, 0, 0.3);
+}
+
+.modal-content {
+  padding: 30rpx;
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20rpx;
+}
+
+.btn, .btn1, .btn0 {
+  padding: 15rpx 25rpx;
+  font-size: 16px;
+  border-radius: 8rpx;
+  border: none;
+  box-shadow: 0 2rpx 4rpx rgba(0, 0, 0, 0.2);
+}
+
+.btn1 {
+  background-color: #2ecc71;
+  color: white;
+}
+
+.btn0 {
+  background-color: #e74c3c;
+  color: white;
+}
+.btn{
+  background-color: rgb(187, 182, 182);
 }

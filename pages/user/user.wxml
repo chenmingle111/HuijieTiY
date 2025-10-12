@@ -1,0 +1,103 @@
+<view class="login-page" wx:if="{{!loggedIn}}">
+  <image class="background-image" src="https://s2.loli.net/2024/11/14/eIv3ElTDz4fXuJx.jpg" mode="aspectFill"></image>
+  <view class="container">
+    <view class="login-box">
+      <view class="input-group">
+        <input style="width: 538rpx; display: block; box-sizing: border-box; height: 71rpx" 
+               class="input" 
+               placeholder="请输入手机号码" 
+               type="text" 
+               maxlength="11" 
+               bindinput="inputPhone"/>
+      </view>
+      <view wx:if="{{phoneError}}" class="error-message">
+        <text>请输入11位有效手机号码</text>
+      </view>
+      <view class="input-group">
+        <input style="width: 538rpx; display: block; box-sizing: border-box; height: 71rpx" 
+               class="input" 
+               placeholder="请输入密码" 
+               type="password" 
+               bindinput="inputPassword"/>
+      </view>
+      <button class="login-button" bindtap="login" disabled="{{!canLogin}}">登录</button>
+      <view class="options">
+        <text class="link">忘记密码？</text>
+        <text class="link">立即注册</text>
+      </view>
+      <view class="third-party">
+        <text class="third-party-text">第三方账号登录</text>
+        <view class="icons">
+          <image style="position: relative; left: -97rpx; top: 26rpx; width: 50rpx; height: 50rpx; display: block; box-sizing: border-box" class="icon" src="https://s2.loli.net/2024/11/14/2NeyqkPnMmj6pJT.png" />
+          <image style="position: relative; left: -1rpx; top: 23rpx; width: 50rpx; height: 50rpx" class="icon" src="https://s2.loli.net/2024/11/14/A2xdMsV6a3jbGyv.png" />
+          <image style="position: relative; left: 95rpx; top: 23rpx; width: 50rpx; height: 50rpx" class="icon" src="https://s2.loli.net/2024/11/14/eZUMJz86OaTiNPy.png" />
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<view class="scbg" wx:if="{{loggedIn}}">
+  <view class="parent_container">
+    <view class="container_head">
+      <image class="head_img" src="https://tse3-mm.cn.bing.net/th/id/OIP-C.2rQ25qnSMQHXGcHz3Rp2pAHaEo?w=316&h=197&c=8&rs=1&qlt=90&o=6&dpr=1.5rm=2&w=1920&h=1200&dpr=1.5&pid=ImgDetMain"></image>
+      <view class="head_pers_info" bindtap="head_pers_info">
+        <view class="head_pic" style="width: 132rpx; display: flex; box-sizing: border-box; position: relative; left: 39rpx; top: 0rpx">
+          <image class="head_pic_content" mode="aspectFit" src="/images/user.png" style="position: relative; left: 0rpx; top: -6rpx"></image>
+        </view>
+        <view class="inf_content" style="width: 400rpx; display: flex; box-sizing: border-box; position: relative; left: 43rpx; top: 0rpx">
+          <text class="user_info">{{userName}}</text>
+          <text class="family_info_ct_phone">联系电话：{{userPhone}}</text>
+          <text class="family_info_ct">昵称：</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="userItemListView">
+      <view class="my_priview_md" bindtap="myappointpage">
+        <image class="my_priview" src="https://s2.loli.net/2024/11/14/BF5eiDRrhTcW3G4.png"></image>
+        <text>我的报告</text>
+        <view class="arrow"></view>
+      </view>
+      <view class="my_priview_md" bindtap="openmyorder">
+        <image class="my_priview" src="https://s2.loli.net/2024/11/14/7A46JwMzbkvmayx.png"></image>
+        <text>健康评估</text>
+        <view class="arrow"></view>
+      </view>
+
+      <view class="my_priview_md" bindtap="mycollection">
+        <image class="my_priview" src="https://s2.loli.net/2024/11/14/1CF74x3VoKpZjb9.png"></image>
+        <text>我的收藏</text>
+        <view class="arrow"></view>
+      </view>
+
+      <view class="my_priview_md" bindtap="bind">
+        <image class="my_priview" src="https://s2.loli.net/2024/11/14/C7u2iNHEB6bVWzS.png"></image>
+        <text>个人资料</text>
+        <view class="arrow"></view>
+      </view>
+      <view class="my_priview_md" bindtap="updatepassword">
+        <image class="my_priview" src="https://s2.loli.net/2024/11/14/ZJ19Iuxqsc6tXyP.png"></image>
+        <text>修改密码</text>
+        <view class="arrow"></view>
+      </view>
+      <view class="my_priview_md" bindtap="aboutus">
+        <image class="my_priview" src="https://s2.loli.net/2024/11/14/pgQaNlkU3LxPwji.png"></image>
+        <text>关于我们</text>
+        <view class="arrow"></view>
+      </view>
+      <view class="my_priview_md" bindtap="logout">
+        <image class="my_priview" src="https://s2.loli.net/2024/11/14/UBHmtD9Qgk1lp5f.png"></image>
+        <text>退出登录</text>
+        <view class="arrow"></view>
+      </view>
+    </view>
+
+    <view class="last_view"></view>
+  </view>
+</view>
+
+
+
+
+

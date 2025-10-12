@@ -1,25 +1,78 @@
-<!-- index.wxml -->
 <view class="container"> 
-  <view class="add-list">
-    <input  
-      type="text" 
-      auto-focus 
-      placeholder="要加什么任务吗？" 
-      value="{{todolist_one}}"   
-      bindinput="bindKeyInput" 
-    />
-    <button class="btn" bindtap="add">添加</button>
+  <view class="img-news">
+    <calenda id="calenda" 
+    bind:doSelect="onDateSelected"
+    bindcallPageFunction="onCallPageFunction"></calenda>
+    
+  </view>
+
+  <view class="mathtext">
+  <view>
+    <button class="btn" bindtap="showModal">+</button>
+  </view>
+  <view>
+    <span class="highlight">{{work}}</span>
+  累计打卡: <span class="highlight">{{total_day}}</span> 天  
+  持续打卡: <span class="highlight">{{continue_day}}</span> 天
   </view>
   
-  <view class="add-list-container">
-  <checkbox-group bindchange="mark">
-    <view class="add-list" wx:for="{{todo}}" wx:key="{{item.value}}">
-      <checkbox value="{{index}}" checked="{{item.checked}}"></checkbox>
-      <view class="{{item.checked ? 'checked' : ''}} item-text">
-         {{ item.value }}
+</view>
+
+  <!-- 遮罩层：覆盖在背景上 -->
+  <view wx:if="{{showModalFlag || showDeleteModalFlag}}" class="overlay"></view>
+
+  <!-- 弹窗：用于添加任务 -->
+  <view wx:if="{{showModalFlag}}" class="modal">
+    <view class="modal-content">
+      <input  
+        type="text" 
+        auto-focus 
+        placeholder="请输入任务内容"
+        value="{{todolist_one}}"   
+        bindinput="bindKeyInput" 
+      />
+      <view class="modal-buttons">
+        <button class="btn1" bindtap="confirmAdd">确认</button>
+        <button class="btn0" bindtap="cancelAdd">取消</button>
       </view>
-      <button class="btn" bindtap="delete" data-index="{{index}}">删除</button>
+    </view>
+  </view>
+
+  <!-- 删除任务的确认弹窗 -->
+  <view wx:if="{{showDeleteModalFlag}}" class="modal">
+    <view class="modal-content">
+      <span class="highlight">{{work}}</span>
+      <text>确定要删除次任务吗？</text>
+      <view class="modal-buttons">
+        <button class="btn1" bindtap="confirmDelete">确认</button>
+        <button class="btn0" bindtap="cancelDelete">取消</button>
+      </view>
+    </view>
+  </view>
+
+  <!-- 任务列表 -->
+  <scroll-view class="add-list-container {{showModalFlag || showDeleteModalFlag ? '' : 'enabled'}}" scroll-y="true" style="height: 50vh;">
+  <checkbox-group wx:if="{{!showModalFlag && !showDeleteModalFlag}}">
+   <!-- 打卡按钮-->
+    <view class="{{item.value === work ? 'add-list1':'add-list'}}" wx:for="{{todo}}" wx:key="key" 
+    bindlongtap="showDeleteModal" data-userwork="{{item.value}}" 
+    bindtap="getTdHistory" data-setwork="{{item.value}}" >
+      <checkbox 
+        value="{{index}}" 
+        checked="{{item.checked}}" 
+        catchtap="addlist" 
+        data-userwork="{{item.value}}" 
+        data-checked="{{item.checked}}" 
+        data-setwork="{{item.value}}"
+      ></checkbox>
+<view class="{{item.checked ? 'checked' : ''}} item-text">
+  {{item.value}}
+</view>
+
+
     </view>
   </checkbox-group>
-  </view>
+</scroll-view>
+
+
 </view>
